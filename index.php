@@ -140,6 +140,11 @@ class Renderer {
                     let loadKeys = async function (address) {
                         return fetch("/?page=keys&address=" + address);
                     };
+
+                    let keysTemplate = 
+
+                    // initial render
+
                 });
             </script>
         </html>
