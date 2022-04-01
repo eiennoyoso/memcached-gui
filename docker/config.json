@@ -1,0 +1,49 @@
+{
+    "listeners": {
+        "*:80": {
+            "pass": "routes"
+        }
+    },
+
+    "routes": [
+        {
+            "match": {
+                "uri": [
+                    "*.php",
+                    "*.php/*"
+                ]
+            },
+
+            "action": {
+                "pass": "applications/memcached-gui/direct"
+            }
+        },
+        {
+            "action": {
+                "share": "/var/www/public$uri",
+                "fallback": {
+                    "pass": "applications/memcached-gui/index"
+                }
+            }
+        }
+    ],
+
+    "applications": {
+        "memcached-gui": {
+            "type": "php",
+            "options": {
+                "file": "/usr/local/etc/php/conf.d/*.ini"
+            },
+            "targets": {
+                "direct": {
+                    "root": "/var/www/public/"
+                },
+
+                "index": {
+                    "root": "/var/www/public/",
+                    "script": "index.php"
+                }
+            }
+        }
+    }
+}

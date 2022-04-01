@@ -1,0 +1,18 @@
+version: '3.4'
+
+services:
+  php:
+    image: memcached0gui
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile
+    environment:
+      - XDEBUG_MODE=develop,debug,coverage
+      - PHP_IDE_CONFIG=serverName=userservice
+      - PHP_DATE_TIMEZONE=${PHP_DATE_TIMEZONE:-UTC}
+    ports:
+      - "80:80"
+    volumes:
+      - .:/var/www:rw
+    extra_hosts:
+      - "host.docker.internal:host-gateway"

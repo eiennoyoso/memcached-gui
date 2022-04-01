@@ -1,0 +1,17 @@
+{
+    "name": "sokil/memcached-gui",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Sokil\\MemcachedGui\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "sokil",
+            "email": "dmytro.sokil@gmail.com"
+        }
+    ],
+    "require": {}
+}
