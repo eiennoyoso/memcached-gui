@@ -11,13 +11,22 @@
             body, td {
                 font-size: 9px;
             }
+            .btn .spinner-border {
+                display: none;
+            }
+            .btn.loading .spinner-border {
+                display: inline-block;
+            }
         </style>
         </head>
         <body>
             <form id="addressFrm">
                 <div class="input-group">
                     <input type="text" name="address" class="form-control" value="127.0.0.1:11211" />
-                    <button class="btn btn-outline-secondary" type="submit">Find</button>
+                    <button class="btn btn-outline-secondary" type="submit">
+                        <span class="spinner-border spinner-border-sm" role="status"></span>
+                        Find
+                    </button>
                 </div>
             </form>
             <div id="keys"></div>
@@ -70,6 +79,7 @@
                 $addressFrm.submit(
                     function(e) {
                         e.preventDefault();
+                        $addressFrm.find('[type="submit"]').addClass('loading');
                         let address = $addressFrm.find('[name="address"]').val();
 
                         let keys = loadKeys(address)
@@ -81,7 +91,8 @@
                                 });
 
                                 $('#keys').html(block);
-                            });
+                            })
+                            .finally(() => $addressFrm.find('[type="submit"]').removeClass('loading'));
                     }
                 );            
             });
