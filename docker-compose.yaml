@@ -2,7 +2,7 @@ version: '3.4'
 
 services:
   php:
-    image: memcached0gui
+    image: memcached-gui
     build:
       context: .
       dockerfile: ./docker/Dockerfile
